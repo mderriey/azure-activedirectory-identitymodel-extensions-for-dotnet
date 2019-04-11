@@ -833,7 +833,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens
             {
                 if (tokenParts.Length == JwtConstants.JweSegmentCount)
                 {
-                    var jwtToken = new JsonWebToken(token);
+                    var jwtToken = new JsonWebToken(tokenParts, token);
                     var decryptedJwt = DecryptToken(jwtToken, validationParameters);
                     var innerToken = ValidateSignature(decryptedJwt, validationParameters);
                     jwtToken.InnerToken = innerToken;

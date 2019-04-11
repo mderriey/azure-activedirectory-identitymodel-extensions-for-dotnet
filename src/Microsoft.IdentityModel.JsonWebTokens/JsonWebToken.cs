@@ -72,6 +72,15 @@ namespace Microsoft.IdentityModel.JsonWebTokens
         }
 
         /// <summary>
+        /// Initializes a new instance of <see cref="JsonWebToken"/> from a set of strings string in JWS or JWE Compact serialized format.
+        /// </summary>
+        /// <param name="tokenParts">the parts of a json token.
+        internal JsonWebToken(string[] tokenParts, string json)
+        {
+            Decode(tokenParts, json);
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="JsonWebToken"/> class where the header contains the crypto algorithms applied to the encoded header and payload.
         /// </summary>
         /// <param name="header">A string containing JSON which represents the cryptographic operations applied to the JWT and optionally any additional properties of the JWT.</param>
@@ -334,7 +343,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens
         /// </summary>
         /// <param name="tokenParts">the tokenized string.</param>
         /// <param name="rawData">the original token.</param>
-        private void Decode(string[] tokenParts, string rawData)
+            private void Decode(string[] tokenParts, string rawData)
         {
             LogHelper.LogInformation(LogMessages.IDX14106, rawData);
             if (!JsonWebTokenManager.RawHeaderToJObjectCache.TryGetValue(tokenParts[0], out var header))
