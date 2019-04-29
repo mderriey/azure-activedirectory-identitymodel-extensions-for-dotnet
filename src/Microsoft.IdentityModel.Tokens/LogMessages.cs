@@ -83,7 +83,7 @@ namespace Microsoft.IdentityModel.Tokens
         public const string IDX10249 = "IDX10249: X509SecurityKey validation failed. The associated certificate has expired. ValidTo (UTC): '{0}', Current time (UTC): '{1}'.";
         public const string IDX10250 = "IDX10250: The associated certificate is valid. ValidFrom (UTC): '{0}', Current time (UTC): '{1}'.";
         public const string IDX10251 = "IDX10251: The associated certificate is valid. ValidTo (UTC): '{0}', Current time (UTC): '{1}'.";
-        
+
         // 10500 - SignatureValidation
         public const string IDX10500 = "IDX10500: Signature validation failed. No security keys were provided to validate the signature.";
         public const string IDX10501 = "IDX10501: Signature validation failed. Unable to match keys: \nkid: '{0}', \ntoken: '{1}'.";
@@ -198,6 +198,9 @@ namespace Microsoft.IdentityModel.Tokens
         public const string IDX10804 = "IDX10804: Unable to retrieve document from: '{0}'.";
         public const string IDX10805 = "IDX10805: Error deserializing json: '{0}' into '{1}'.";
         public const string IDX10806 = "IDX10806: Deserializing json: '{0}' into '{1}'.";
+        public const string IDX10807 = "IDX10807: Unable to create an ECDsa from the parameters found in the JsonWebKey. See inner exception for additional details.";
+        public const string IDX10808 = "IDX10808: The 'use' parameter should be 'sig' or empty, but was '{0}'.";
+        public const string IDX10809 = "IDX10809: The 'kty' parameter '{0}' is not supported. Supported 'kty' parameters are 'RSA' and 'EC'.";
 #pragma warning restore 1591
     }
 }
