@@ -225,6 +225,17 @@ namespace Microsoft.IdentityModel.Protocols.OpenIdConnect.Tests
                 });
             }
 
+            // Unable to obtain a new configuration, but _currentConfiguration is not null so it should be returned.
+            configManager = new ConfigurationManager<OpenIdConnectConfiguration>("OpenIdConnectMetadata.json", new OpenIdConnectConfigurationRetriever(), docRetriever);
+            configuration = configManager.GetConfigurationAsync().Result;
+            TestUtilities.SetField(configManager, "_lastRefresh", DateTimeOffset.UtcNow - TimeSpan.FromHours(1));
+            configManager.RequestRefresh();
+            TestUtilities.SetField(configManager, "_metadataAddress", "http://someaddress.com");
+            configuration2 = configManager.GetConfigurationAsync().Result;
+            IdentityComparer.AreEqual(configuration, configuration2, context);
+            if (!object.ReferenceEquals(configuration, configuration2))
+                context.Diffs.Add("!object.ReferenceEquals(configuration, configuration2)");
+
             TestUtilities.AssertFailIfErrors(context);
         }
 
